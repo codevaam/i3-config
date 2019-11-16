@@ -1,0 +1,270 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+# set modifier key
+set $mod Mod4
+
+# Fancy names for workspaces
+set $w1 1: www
+set $w2 2: Term
+set $w3 3: Code
+set $w4 4: Files
+set $w5 5
+set $w6 6
+set $w7 7
+set $w8 8
+set $w9 9
+set $w10 10: Spotify
+set $wdummy dummy
+
+# assign sections
+assign [class="Chromium Web Browser"]	$w1
+assign [class="code"]			$w3
+assign [class="nautilus"]		$w4
+assign [class="ownCloud"]		$w8
+assign [class="^Telegram$"]		$w9
+assign [class="^Keepassx2$"]		$w10
+
+
+# assign special properties
+for_window [class="^Pavucontrol$"] floating enable
+for_window [title="MonoDevelop External Console"] floating enable
+for_window [class="^Shutter$"] floating enable
+# Enables floating windows of the chrome extension "Videostream for Chromecast"
+for_window [instance="^crx_cnciopoikihiagdjbjpnocolokfelagl$"] floating enable
+# The Chrome "Page Unresponsive" dialog is not floating...
+for_window [title="Page Unresponsive"] floating enable
+# Share your screen from Google Cast extension
+for_window [title="Share your screen - Google Cast"] floating enable
+# TeamSpeak new features window
+for_window [class="^TeamSpeak 3$" title="^New TeamSpeak Features"] floating enable
+# Android Device Monitor startup window
+for_window [class="^Monitor$" instance="^Monitor$" title="^Monitor$"] floating enable
+# chromeIPass "No logins found." window
+for_window [title="^chromeIPass$"] floating enable
+
+# Jetbrains
+for_window [class="^com-intellij-updater-Runner$" title="^Update$"] floating enable
+for_window [instance="^sun-awt-X11-XDialogPeer$" title="^Complete Installation$"] floating enable
+
+# Unity
+for_window [class="^Unity$" title="^Starting Unity...$"] floating enable
+for_window [class="^Unity$" title="^Hold On$"] floating enable
+for_window [class="^Unity$" title="^Preparing Package$"] floating enable
+for_window [class="^Unity$" title="^Importing Package$"] floating enable
+
+# https://github.com/ValveSoftware/steam-for-linux/issues/1040
+for_window [class="^Steam$" title="^Friends$"] floating enable
+for_window [class="^Steam$" title="Steam - News"] floating enable
+for_window [class="^Steam$" title=".* - Chat"] floating enable
+for_window [class="^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title=".* - event started"] floating enable
+for_window [class="^Steam$" title=".* CD key"] floating enable
+for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
+for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
+for_window [title="^Steam Keyboard$"] floating enable
+
+# There is no specific property for windows that should be floating (eg. the WM_NAME is the device name (PC1))
+for_window [class="^PacketTracer6$"] floating enable
+for_window [class="^PacketTracer6$" title="PT Activity"] floating disable
+for_window [class="^PacketTracer6$" title="Cisco Packet Tracer"] floating disable
+
+# font for window titles
+font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango:DejaVu Sans Mono 12
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start rofi (a program launcher)
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --entry-type=name --dmenu='rofi -theme Pop-Dark -i -opacity \"90\" -dmenu -p "run:"'
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+odiaeresis focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+odiaeresis move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# switch to workspace
+bindsym $mod+1 workspace $w1
+bindsym $mod+2 workspace $w2
+bindsym $mod+3 workspace $w3
+bindsym $mod+4 workspace $w4
+bindsym $mod+5 workspace $w5
+bindsym $mod+6 workspace $w6
+bindsym $mod+7 workspace $w7
+bindsym $mod+8 workspace $w8
+bindsym $mod+9 workspace $w9
+bindsym $mod+0 workspace $w10
+bindsym $mod+udiaeresis workspace $wdummy
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $w1
+bindsym $mod+Shift+2 move container to workspace $w2
+bindsym $mod+Shift+3 move container to workspace $w3
+bindsym $mod+Shift+4 move container to workspace $w4
+bindsym $mod+Shift+5 move container to workspace $w5
+bindsym $mod+Shift+6 move container to workspace $w6
+bindsym $mod+Shift+7 move container to workspace $w7
+bindsym $mod+Shift+8 move container to workspace $w8
+bindsym $mod+Shift+9 move container to workspace $w9
+bindsym $mod+Shift+0 move container to workspace $w10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec qtshutdownmenu
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym odiaeresis resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    position top
+    status_command i3status
+    tray_output LVDS
+    colors{
+        background #232323
+        statusline #DCDCDC
+    }
+}
+
+# for_window [class=".*"] border pixel 0
+
+client.focused          #3F8AC2 #096BAA #00BAA7 #00DA8E
+client.focused_inactive #333333 #5F676A #ffffff #484e50
+client.unfocused        #333333 #424242 #888888 #292d2e
+client.urgent           #C10004 #900000 #ffffff #900000
+
+### MEDIA KEYS
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# bindsym XF86MonBrightnessDown exec xbacklight -dec 20; # decrease screen brightness
+bindsym XF86MonBrightnessUp exec light -A 3
+bindsym XF86MonBrightnessDown exec light -U 3
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+# scrot & gpicview - root
+bindsym Print exec "scrot -e 'mv $f /tmp/ && gpicview /tmp/$f'"
+# scrot & gpicview - select window or rectangle
+bindsym $mod+Print exec "scrot -u -e 'mv $f /tmp/ && gpicview /tmp/$f'"
+
+# Bind $mod+P to file manager
+bindsym $mod+P exec --no-startup-id nautilus
+
+# Bind $mod+M to own lock script
+bindsym $mod+M exec --no-startup-id lock
+
+# Start calculator on calculator key
+bindsym XF86Calculator exec "gnome-calculator"
+
+# Start the shutdown menu on left top button (like the power button)
+bindcode 248 exec qtshutdownmenu
+bindsym XF86PowerOff exec qtshutdownmenu
+
+# Bind sleep key to suspend (set 'HandleSuspendKey=ignore' in /etc/systemd/logind.conf)
+bindsym XF86Sleep exec "qtshutdownmenu suspend"
+
+### AUTOSTARTS
+# Start nm-applet for networkmanager
+exec --no-startup-id nm-applet
+# Start pulseaudio
+exec --no-startup-id "pulseaudio --start"
+#exec --no-startup-id compton -b #--focus-exclude "x = 0 && y = 0 && override_redirect = true"
+
+
+exec feh --bg-scale ~/Pictures/riddler-2.jpeg
